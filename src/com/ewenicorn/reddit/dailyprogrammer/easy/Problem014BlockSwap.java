@@ -2,8 +2,6 @@ package com.ewenicorn.reddit.dailyprogrammer.easy;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * http://redd.it/q2v2k
