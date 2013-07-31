@@ -14,14 +14,25 @@
     </target>
 	    
 	<target name="compile">
-		<mkdir dir="${classes.dir}"/>
-		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpath="${lib.dir}"/>
+			<mkdir dir="${classes.dir}"/>
+			<javac srcdir="${src.dir}" destdir="${classes.dir}/${src.dir}" classpath="${lib.dir}"/>
+			<javac srcdir="${test.dir}" destdir="${classes.dir}/${test.dir}" classpath="${lib.dir}"/>
+	    </target>
+		
+	<target name="test">
+        <junit>
+            <formatter type="plain" usefile="false" />
+            <formatter type="plain" />
+            <batchtest>
+                <fileset dir="${classes.dir}" includes="**/*Test*.class" />
+            </batchtest>
+        </junit>
     </target>
-	    
-	<target name="jar" depends="compile">
+	
+	<target name="jar" depends="compile, test">
 		<mkdir dir="${jar.dir}"/>
 		<jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
-		<manifest>
+			<manifest>
 	             <attribute name="Main-Class" value="${main-class}"/>
 	         </manifest>
 	     </jar>
