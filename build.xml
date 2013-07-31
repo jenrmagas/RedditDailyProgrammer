@@ -6,6 +6,7 @@
 	<property name="build.dir" value="build"/>
 	<property name="classes.dir" value="${build.dir}/classes"/>
 	<property name="jar.dir" value="${build.dir}/jar"/>
+	<property name="junit.dir" value="${build.dir}/testresults" />
 	
 	<path id="master-classpath">
 	  <fileset dir="${lib.dir}">
@@ -17,12 +18,14 @@
 	
 	<target name="clean">
 		<delete dir="${build.dir}"/>
-    </target>
-	    
-	<target name="compile">
 		<mkdir dir="${classes.dir}"/>
 		<mkdir dir="${classes.dir}/${src.dir}"/>
 		<mkdir dir="${classes.dir}/${test.dir}"/>
+		
+		<mkdir dir="${junit.dir}" />
+    </target>
+	    
+	<target name="compile">
 			<javac destdir="${classes.dir}">
 				<src path="${src.dir}" />
 				<classpath refid="master-classpath"/>
@@ -38,8 +41,8 @@
         <junit >
         	<classpath refid="master-classpath" />
             <formatter type="plain" usefile="false" />
-            <formatter type="plain" />
-            <batchtest>
+            <formatter type="xml" />
+            <batchtest todir="${junit.dir}">
                 <fileset dir="${classes.dir}" includes="**/*Test*.class" />
             </batchtest>
         </junit>
