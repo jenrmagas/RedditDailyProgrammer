@@ -3,58 +3,62 @@
 	<property name="src.dir" value="src" />
 	<property name="test.dir" value="test" />
 	<property name="lib.dir" value="lib" />
-	<property name="build.dir" value="build"/>
-	<property name="classes.dir" value="${build.dir}/classes"/>
-	<property name="jar.dir" value="${build.dir}/jar"/>
+	<property name="build.dir" value="build" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="jar.dir" value="${build.dir}/jar" />
 	<property name="junit.dir" value="${build.dir}/testresults" />
-	
-	<path id="master-classpath">
-	  <fileset dir="${lib.dir}">
-	    <include name="*.jar"/>
-	  </fileset>
-	</path>
-	
-	<target name="main" depends="clean,jar" />
-	
-	<target name="clean">
-		<delete dir="${build.dir}"/>
-		<mkdir dir="${classes.dir}"/>
-		<mkdir dir="${classes.dir}/${src.dir}"/>
-		<mkdir dir="${classes.dir}/${test.dir}"/>
-		
-		<mkdir dir="${junit.dir}" />
-    </target>
-	    
-	<target name="compile">
-			<javac destdir="${classes.dir}">
-				<src path="${src.dir}" />
-				<classpath refid="master-classpath"/>
-			</javac>
-			<javac destdir="${classes.dir}">
-				<src path="${test.dir}" />
-				<classpath refid="master-classpath"/>
-			</javac>
 
-	    </target>
+	<path id="master-classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		
+		<fileset dir="${jar.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="main" depends="clean,compile,jar,test" />
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${junit.dir}" />
+		<mkdir dir="${jar.dir}" />
+	</target>
+
+	<target name="compile">
+		<javac destdir="${classes.dir}">
+			<src path="${src.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
+		
+		<!-- Building source for subsequent unit tests -->
+		<javac destdir="${classes.dir}">
+			<src path="${test.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
+
+	</target>
 
 	<target name="test">
-        <junit >
-        	<classpath refid="master-classpath" />
-            <formatter type="plain" usefile="false" />
-            <formatter type="xml" />
-            <batchtest todir="${junit.dir}">
-                <fileset dir="${classes.dir}" includes="**/*Test*.class" />
-            </batchtest>
-        </junit>
-    </target>
-	
-	<target name="jar" depends="compile, test">
-		<mkdir dir="${jar.dir}"/>
+		<junit>
+			<classpath refid="master-classpath" />
+			<formatter type="plain" usefile="false" />
+			<formatter type="xml" />
+			
+			<batchtest todir="${junit.dir}" haltonfailure="false">
+				<fileset dir="${classes.dir}" includes="**/*Test*.class" />
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="jar">
 		<jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
 			<manifest>
-	             <attribute name="Main-Class" value="${main-class}"/>
-	         </manifest>
-	     </jar>
+				<attribute name="Main-Class" value="${main-class}" />
+			</manifest>
+		</jar>
 	</target>
-	
+
 </project>
