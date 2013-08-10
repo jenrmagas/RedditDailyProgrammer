@@ -72,7 +72,7 @@
 		<echo>Starting checkstyle</echo>
 		
 		<taskdef resource="checkstyletask.properties" classpath="${checkstyle.jar.path}"/>
-    		<checkstyle config="sun_checks.xml" failOnViolation="false">
+    		<checkstyle config="sun-checks.xml" failOnViolation="false">
 			<fileset dir="src" includes="**/*.java"/>
 			<fileset dir="test" includes="**/*.java"/>
 			<formatter type="xml" toFile="${checkstyle.report.dir}/checkstyle-result.xml"/>
