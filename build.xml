@@ -115,12 +115,8 @@
 			<ruleset>rulesets/java/design.xml</ruleset>
 			<ruleset>java-basic</ruleset>
 			<formatter type="xml" toFile="${report.dir}/pmd.xml"/>
-			<fileset dir="src">
-				<include name="**/*.java"/>
-			</fileset>
-			<fileset dir="test">
-				<include name="**/*.java"/>
-			</fileset>
+			<fileset dir="src" includes="**/*.java"/>
+			<fileset dir="test" includes="**/*.java"/>
 		</pmd>
 	</target>
 
