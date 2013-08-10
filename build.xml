@@ -86,7 +86,7 @@
 		<fail unless="findbugs.available" message="Error: FINDBUGS_HOME not set or findbugs.jar not found." />
 		<taskdef name="findbugs"
 			classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
-			classpath="${findbugs..dir}/findbugs-ant.jar" />
+			classpath="${findbugs.dir}/findbugs-ant.jar" />
 		<findbugs home="${findbugs.dir}"
                   workHard="true"
                   output="xml:withMessages"
