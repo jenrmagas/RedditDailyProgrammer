@@ -2,15 +2,19 @@
 
 	<property name="src.dir" value="src" />
 	<property name="test.dir" value="test" />
+	<property name="report.dir" value="report" />
+	
 	<property name="lib.dir" value="lib" />
+	<property name="findbugs.dir" value="${lib.dir}/findbugs-2.0.2/lib" />
+	<property name="pmd.dir" value="${lib.dir}/pmd-bin-5.0.4/lib" />
+	<property name="checkstyle.jar.path" location="${lib.dir}/checkstyle-5.5-all.jar"/>
+
 	<property name="build.dir" value="build" />
 	<property name="classes.dir" value="${build.dir}/classes" />
 	<property name="jar.dir" value="${build.dir}/jar" />
 	<property name="junit.dir" value="${build.dir}/testresults" />
 
-	<property name="checkstyle.report.dir" value="report" />
-	<property name="checkstyle.jar.path" location="${lib.dir}/checkstyle-5.5-all.jar"/>
-
+	
 	<path id="master-classpath">
 		<fileset dir="${lib.dir}">
 			<include name="*.jar" />
@@ -21,16 +25,16 @@
 		</fileset>
 	</path>
 
-	<target name="main" depends="clean,compile,jar,test,checkstyle" />
+	<target name="main" depends="clean,compile,jar,test,checkstyle,findbugs,pmd" />
 
 	<target name="clean">
 		<delete dir="${build.dir}" />
-		<delete dir="${checkstyle.report.dir}" />
+		<delete dir="${report.dir}" />
 		
 		<mkdir dir="${classes.dir}" />
 		<mkdir dir="${junit.dir}" />
 		<mkdir dir="${jar.dir}" />
-		<mkdir dir="${checkstyle.report.dir}" />
+		<mkdir dir="${report.dir}" />
 	</target>
 
 	<target name="compile">
@@ -75,10 +79,42 @@
     		<checkstyle config="sun-checks.xml" failOnViolation="false">
 			<fileset dir="src" includes="**/*.java"/>
 			<fileset dir="test" includes="**/*.java"/>
-			<formatter type="xml" toFile="${checkstyle.report.dir}/checkstyle-result.xml"/>
+			<formatter type="xml" toFile="${report.dir}/checkstyle-result.xml"/>
 		</checkstyle>
 		
 		<echo>Checkstyle finished</echo>
+	</target>
+	
+	<target name="findbugs">
+		<available file="${findbugs.dir}/findbugs.jar" property="findbugs.available" />
+		<fail unless="findbugs.available" message="Error: FINDBUGS_HOME not set or findbugs.jar not found." />
+		<taskdef name="findbugs"
+			classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
+			classpath="${findbugs.dir}/findbugs-ant.jar" />
+		<findbugs home="${findbugs.dir}"
+			workHard="true"
+			output="xml:withMessages"
+			outputFile="${report.dir}/findbugs.xml">
+			<class location="${classes.dir}" />
+			<auxClasspath>
+	                	<fileset file="${lib.dir}/junit.jar" />
+	            	</auxClasspath>
+        	</findbugs>
+	</target>
+	
+	<target name="pmd">
+		<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpath="${pmd.dir}/pmd-5.0.4.jar"/>
+		<pmd shortFilenames="true">
+			<sourceLanguage name="java" version="1.6"/>
+			<ruleset>rulesets/java/design.xml</ruleset>
+			<ruleset>java-basic</ruleset>
+			<formatter type="html" toFile="pmd_report.html">
+				<param name="linkPrefix" value="http://pmd.sourceforge.net/xref/"/>
+			</formatter>
+			<fileset dir=".">
+				<include name="**/*.java"/>
+			</fileset>
+		</pmd>
 	</target>
 
 </project>
