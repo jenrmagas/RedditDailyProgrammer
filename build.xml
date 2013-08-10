@@ -8,6 +8,9 @@
 	<property name="jar.dir" value="${build.dir}/jar" />
 	<property name="junit.dir" value="${build.dir}/testresults" />
 
+	<property name="checkstyle.report.dir" value="report" />
+	<property name="checkstyle.jar.path" location="${lib.dir}/checkstyle-5.5-all.jar"/>
+
 	<path id="master-classpath">
 		<fileset dir="${lib.dir}">
 			<include name="*.jar" />
@@ -18,13 +21,16 @@
 		</fileset>
 	</path>
 
-	<target name="main" depends="clean,compile,jar,test" />
+	<target name="main" depends="clean,compile,jar,test,checkstyle" />
 
 	<target name="clean">
 		<delete dir="${build.dir}" />
+		<delete dir="${checkstyle.report.dir}" />
+		
 		<mkdir dir="${classes.dir}" />
 		<mkdir dir="${junit.dir}" />
 		<mkdir dir="${jar.dir}" />
+		<mkdir dir="${checkstyle.report.dir}" />
 	</target>
 
 	<target name="compile">
@@ -59,6 +65,20 @@
 				<attribute name="Main-Class" value="${main-class}" />
 			</manifest>
 		</jar>
+	</target>
+
+
+	<target name="checkstyle">
+		<echo>Starting checkstyle</echo>
+		
+		<taskdef resource="checkstyletask.properties" classpath="${checkstyle.jar.path}"/>
+    		<checkstyle config="sun-checks.xml" failOnViolation="false">
+			<fileset dir="src" includes="**/*.java"/>
+			<fileset dir="test" includes="**/*.java"/>
+			<formatter type="xml" toFile="${checkstyle.report.dir}/checkstyle-result.xml"/>
+		</checkstyle>
+		
+		<echo>Checkstyle finished</echo>
 	</target>
 
 </project>
