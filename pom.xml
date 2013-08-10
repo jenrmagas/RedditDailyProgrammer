@@ -16,6 +16,8 @@
       <version>2.10</version>
       <configuration>
         <configLocation>sun_checks.xml</configLocation>
+        <consoleOutput>true</consoleOutput>
+        <includeTestSourceDirectory>true</includeTestSourceDirectory>
       </configuration>
       </plugin>
     </plugins>
