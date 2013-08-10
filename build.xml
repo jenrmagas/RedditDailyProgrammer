@@ -24,6 +24,12 @@
 			<include name="*.jar"/>
 		</fileset>
 	</path>
+	
+	<path id="pmd.classpath">
+	    <fileset dir="${pmd.dir}"> 
+	        <include name="*.jar" /> 
+	    </fileset>
+	</path>
 
 	<target name="main" depends="clean,compile,jar,test,checkstyle,findbugs,pmd" />
 
@@ -103,7 +109,7 @@
 	</target>
 	
 	<target name="pmd">
-		<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpath="${pmd.dir}/pmd-5.0.4.jar"/>
+		<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="${pmd.classpath}"/>
 		<pmd shortFilenames="true">
 			<sourceLanguage name="java" version="1.6"/>
 			<ruleset>rulesets/java/design.xml</ruleset>
