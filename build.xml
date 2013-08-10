@@ -31,6 +31,12 @@
 	    </fileset>
 	</path>
 
+	<path id="checkstyle.classpath">
+	    <fileset dir="${checkstyle.dir}"> 
+	        <include name="*.jar" /> 
+	    </fileset>
+	</path>
+
 	<target name="main" depends="clean,compile,jar,test,checkstyle,findbugs,pmd" />
 
 	<target name="clean">
@@ -81,10 +87,10 @@
 	<target name="checkstyle">
 		<echo>Starting checkstyle</echo>
 		
-		<taskdef resource="checkstyletask.properties" classpath="${checkstyle.jar.path}"/>
+		<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
     		<checkstyle config="sun-checks.xml" failOnViolation="false">
-			<fileset dir="src" includes="**/*.java"/>
-			<fileset dir="test" includes="**/*.java"/>
+			<fileset dir="${src.dir}" includes="**/*.java"/>
+			<fileset dir="${test.dir}" includes="**/*.java"/>
 			<formatter type="xml" toFile="${report.dir}/checkstyle-result.xml"/>
 		</checkstyle>
 		
@@ -115,8 +121,8 @@
 			<ruleset>rulesets/java/design.xml</ruleset>
 			<ruleset>java-basic</ruleset>
 			<formatter type="xml" toFile="${report.dir}/pmd.xml"/>
-			<fileset dir="src" includes="**/*.java"/>
-			<fileset dir="test" includes="**/*.java"/>
+			<fileset dir="${src.dir}" includes="**/*.java"/>
+			<fileset dir="${test.dir}" includes="**/*.java"/>
 		</pmd>
 	</target>
 
