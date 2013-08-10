@@ -1,55 +1,20 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
+  
   <groupId>com.ewenicorn.software</groupId>
   <artifactId>RedditDailyProgrammer</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
-
+  
   <name>RedditDailyProgrammer</name>
   <url>http://maven.apache.org</url>
-
+  
   <reporting>
     <plugins>
-       <plugin>
-             <groupId>org.codehaus.mojo</groupId>
-             <artifactId>findbugs-maven-plugin</artifactId>
-             <version>2.5.2</version>
-             <configuration>
-                <findbugsXmlOutput>true</findbugsXmlOutput>
-                <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
-                <xmlOutput>true</xmlOutput>
-             </configuration>
-          </plugin>
-     </plugins>
-  </reporting>
-  
-  <build>
-    <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>cobertura-maven-plugin</artifactId>
-        <configuration>
-          <instrumentation>
-           <ignores>
-             <ignore>com.test.somepackage.*</ignore>
-           </ignores>
-           <excludes>
-             <exclude>com/test/somepackage/**/*.class</exclude>
-             <exclude>com/test/**/*Test.class</exclude>
-           </excludes>
-         </instrumentation>
-        </configuration>
+      <artifactId>maven-checkstyle-plugin</artifactId>
       </plugin>
     </plugins>
-  </build>
-  
-  <executions>
-    <execution>
-      <goals>
-        <goal>clean</goal>
-      </goals>
-    </execution>
-  </executions>
+  </reporting>
+
 </project>
