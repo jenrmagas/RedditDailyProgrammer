@@ -25,4 +25,31 @@
      </plugins>
   </reporting>
   
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <configuration>
+          <instrumentation>
+           <ignores>
+             <ignore>com.test.somepackage.*</ignore>
+           </ignores>
+           <excludes>
+             <exclude>com/test/somepackage/**/*.class</exclude>
+             <exclude>com/test/**/*Test.class</exclude>
+           </excludes>
+         </instrumentation>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <executions>
+    <execution>
+      <goals>
+        <goal>clean</goal>
+      </goals>
+    </execution>
+  </executions>
 </project>
