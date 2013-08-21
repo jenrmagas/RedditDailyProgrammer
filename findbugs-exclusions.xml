@@ -1,5 +1,5 @@
 <FindBugsFilter>
   <Match>
-    <Class name="~.*tmp$"/>
+    <Class name="~.*tmp"/>
   </Match>
 </FindBugsFilter>
