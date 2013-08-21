@@ -85,7 +85,7 @@
 
 
 	<target name="checkstyle">
-		<echo>Starting checkstyle</echo>
+		<echo>Checkstyle Starting:</echo>
 		
 		<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
     		<checkstyle config="sun-checks.xml" failOnViolation="false">
@@ -98,6 +98,8 @@
 	</target>
 	
 	<target name="findbugs">
+		<echo>FindBugs Starting:</echo>
+
 		<available file="${findbugs.dir}/findbugs.jar" property="findbugs.available" />
 		<fail unless="findbugs.available" message="Error: FINDBUGS_HOME not set or findbugs.jar not found." />
 		<taskdef name="findbugs"
@@ -106,15 +108,20 @@
 		<findbugs home="${findbugs.dir}"
 			workHard="true"
 			output="xml:withMessages"
-			outputFile="${report.dir}/findbugs.xml">
+			outputFile="${report.dir}/findbugs.xml"
+			excludefilter="findbugs-exclusions.xml">
 			<class location="${classes.dir}" />
 			<auxClasspath>
 	                	<fileset file="${lib.dir}/junit.jar" />
 	            	</auxClasspath>
         	</findbugs>
+
+		<echo>FindBugs finished</echo>
 	</target>
 	
 	<target name="pmd">
+		<echo>PMD Starting:</echo>
+
 		<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd.classpath"/>
 		<pmd shortFilenames="true">
 			<sourceLanguage name="java" version="1.6"/>
@@ -124,6 +131,8 @@
 			<fileset dir="${src.dir}" includes="**/*.java"/>
 			<fileset dir="${test.dir}" includes="**/*.java"/>
 		</pmd>
+
+		<echo>PMD finished</echo>
 	</target>
 
 </project>
