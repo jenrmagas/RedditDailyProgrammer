@@ -21,48 +21,48 @@ import java.util.List;
  */
 public class Problem014BlockSwapWithCollections {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				System.in));
-		List<String> entries = new ArrayList<String>();
-		List<String> sortedEntries = new ArrayList<String>();
-		Comparator<String> reverseComparator = Collections.reverseOrder();
-		
-		try {
-			System.out.print("Enter a space-delimited list of values: ");
-			String rawInput = reader.readLine();
-			for(String entry : rawInput.split(" ")) {
-				entries.add(entry);
-			}
-			
-			System.out.print("Enter a block size for which to reverse the entries: ");
-			int blockSize = Integer.valueOf(reader.readLine());
-			
-			sortedEntries.addAll(reverseBlocks(entries, reverseComparator, blockSize));
-			
-			System.out.println(sortedEntries.toString());
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	}
+    /**
+     * @param args
+     */
+    public static void main(final String[] args) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                System.in));
+        List<String> entries = new ArrayList<String>();
+        List<String> sortedEntries = new ArrayList<String>();
+        Comparator<String> reverseComparator = Collections.reverseOrder();
 
-	private static List<String> reverseBlocks(final List<String> entries, final Comparator<String> reverseComparator,
-			final int blockSize) {
-		List<String> sortedEntries = new ArrayList<String>();
-		for(int i = 0; i < entries.size(); i += blockSize) {
-			int end = (i+blockSize > entries.size()) ? entries.size() : i + blockSize;
-			List<String> sublist = entries.subList(i, end);
+        try {
+            System.out.print("Enter a space-delimited list of values: ");
+            String rawInput = reader.readLine();
+            for (String entry : rawInput.split(" ")) {
+                entries.add(entry);
+            }
 
-			Collections.reverseOrder();
-			Collections.sort(sublist, reverseComparator);
-			sortedEntries.addAll(sublist);
-		}
-		
-		return sortedEntries;
-		
-	}
+            System.out.print("Enter a block size for which to reverse the entries: ");
+            int blockSize = Integer.valueOf(reader.readLine());
+
+            sortedEntries.addAll(reverseBlocks(entries, reverseComparator, blockSize));
+
+            System.out.println(sortedEntries.toString());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private static List<String> reverseBlocks(final List<String> entries, final Comparator<String> reverseComparator,
+            final int blockSize) {
+        List<String> sortedEntries = new ArrayList<String>();
+        for (int i = 0; i < entries.size(); i += blockSize) {
+            int end = i + blockSize > entries.size() ? entries.size() : i + blockSize;
+            List<String> sublist = entries.subList(i, end);
+
+            Collections.reverseOrder();
+            Collections.sort(sublist, reverseComparator);
+            sortedEntries.addAll(sublist);
+        }
+
+        return sortedEntries;
+
+    }
 
 }

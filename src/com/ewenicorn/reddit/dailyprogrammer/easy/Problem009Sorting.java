@@ -16,24 +16,24 @@ import java.util.List;
  */
 public class Problem009Sorting {
 
-	public static void main(String[] args) {
-		BufferedReader reader = new BufferedReader(
-				new InputStreamReader(System.in));
-		List<Integer> items = new ArrayList<Integer>();
-		
-		try {
-			System.out.print("Enter a list of values to be sorted (separated by space): ");
-			
-			String rawList = reader.readLine();
-			for(String item : rawList.split(" ")) {
-				items.add(Integer.valueOf(item));
-			}
-			
-			Collections.sort(items);
-			System.out.println(items);
-		} catch (IOException e) {
-			System.out.println(e.getStackTrace());
-		}
-		
-	}
+    public static void main(final String[] args) {
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(System.in));
+        List<Integer> items = new ArrayList<Integer>();
+
+        try {
+            System.out.print("Enter a list of values to be sorted (separated by space): ");
+
+            String rawList = reader.readLine();
+            for (String item : rawList.split(" ")) {
+                items.add(Integer.valueOf(item));
+            }
+
+            Collections.sort(items);
+            System.out.println(items);
+        } catch (IOException e) {
+            System.out.println(e.getStackTrace());
+        }
+
+    }
 }

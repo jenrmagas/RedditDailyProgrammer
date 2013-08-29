@@ -27,124 +27,124 @@ import java.util.Map.Entry;
  */
 public class Problem007MorseCode {
 
-	public static void main(String[] args) {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				System.in));
+    public static void main(final String[] args) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                System.in));
 
-		while (true) {
-			try {
-				System.out
-						.print("Would you like to *encode* or *decode*? (Type one, or *exit* to quit): ");
-				String choice = reader.readLine();
-				if ("encode".equals(choice.toLowerCase())) {
-					System.out.print("Enter the text to be encoded: ");
-					String orig = reader.readLine();
-					System.out.println("Encoded result: ");
-					System.out.println(encodeMessage(orig.toUpperCase()));
-				} else if ("decode".equals(choice.toLowerCase())) {
-					System.out.print("Enter the text to be decoded: ");
-					String orig = reader.readLine();
-					System.out.println("Decoded result: ");
-					System.out.println(decodeMessage(orig.toUpperCase()));
-				} else if ("exit".equals(choice.toLowerCase())) {
-					break;
-				}
-			} catch (Exception ex) {
-				System.out.println(ex.getStackTrace());
-			}
-		}
-	}
+        while (true) {
+            try {
+                System.out
+                        .print("Would you like to *encode* or *decode*? (Type one, or *exit* to quit): ");
+                String choice = reader.readLine();
+                if ("encode".equals(choice.toLowerCase())) {
+                    System.out.print("Enter the text to be encoded: ");
+                    String orig = reader.readLine();
+                    System.out.println("Encoded result: ");
+                    System.out.println(encodeMessage(orig.toUpperCase()));
+                } else if ("decode".equals(choice.toLowerCase())) {
+                    System.out.print("Enter the text to be decoded: ");
+                    String orig = reader.readLine();
+                    System.out.println("Decoded result: ");
+                    System.out.println(decodeMessage(orig.toUpperCase()));
+                } else if ("exit".equals(choice.toLowerCase())) {
+                    break;
+                }
+            } catch (Exception ex) {
+                System.out.println(ex.getStackTrace());
+            }
+        }
+    }
 
-	private static String encodeMessage(String message) {
-		String encoded = "";
+    private static String encodeMessage(final String message) {
+        String encoded = "";
 
-		for (String word : Arrays.asList(message.split(" "))) {
-			for (char letter : word.toCharArray()) {
-				encoded += encodeLetter(letter) + " ";
-			}
-			encoded += "/ ";
-		}
-		return encoded.substring(0, encoded.length() - 3);
-	}
+        for (String word : Arrays.asList(message.split(" "))) {
+            for (char letter : word.toCharArray()) {
+                encoded += encodeLetter(letter) + " ";
+            }
+            encoded += "/ ";
+        }
+        return encoded.substring(0, encoded.length() - 3);
+    }
 
-	private static String decodeMessage(String message) {
-		String decoded = "";
+    private static String decodeMessage(final String message) {
+        String decoded = "";
 
-		for (String word : Arrays.asList(message.split(" / "))) {
-			for (String code : Arrays.asList(word.split(" "))) {
-				decoded += decodeLetter(code);
-			}
-			decoded += " ";
-		}
+        for (String word : Arrays.asList(message.split(" / "))) {
+            for (String code : Arrays.asList(word.split(" "))) {
+                decoded += decodeLetter(code);
+            }
+            decoded += " ";
+        }
 
-		return decoded;
-	}
+        return decoded;
+    }
 
-	private static String encodeLetter(Character letter) {
-		String encoded = "";
+    private static String encodeLetter(final Character letter) {
+        String encoded = "";
 
-		if (getMorseMap().containsKey(letter)) {
-			encoded = getMorseMap().get(letter);
-		}
+        if (getMorseMap().containsKey(letter)) {
+            encoded = getMorseMap().get(letter);
+        }
 
-		return encoded;
-	}
+        return encoded;
+    }
 
-	private static Character decodeLetter(String code) {
-		Character ch = null;
+    private static Character decodeLetter(final String code) {
+        Character ch = null;
 
-		if (getMorseMap().containsValue(code)) {
-			for (Entry<Character, String> entry : getMorseMap().entrySet()) {
-				if (entry.getValue().equals(code)) {
-					ch = entry.getKey();
-					break;
-				}
-			}
-		}
+        if (getMorseMap().containsValue(code)) {
+            for (Entry<Character, String> entry : getMorseMap().entrySet()) {
+                if (entry.getValue().equals(code)) {
+                    ch = entry.getKey();
+                    break;
+                }
+            }
+        }
 
-		return ch;
-	}
+        return ch;
+    }
 
-	private static Map<Character, String> getMorseMap() {
-		Map<Character, String> morseMap = new HashMap<Character, String>();
-		morseMap.put('A', ".-");
-		morseMap.put('B', "-...");
-		morseMap.put('C', "-.-.");
-		morseMap.put('D', "-..");
-		morseMap.put('E', ".");
-		morseMap.put('F', "..-.");
-		morseMap.put('G', "--.");
-		morseMap.put('H', "....");
-		morseMap.put('I', "..");
-		morseMap.put('J', ".---");
-		morseMap.put('K', "-.-");
-		morseMap.put('L', ".-..");
-		morseMap.put('M', "--");
-		morseMap.put('N', "-.");
-		morseMap.put('O', "---");
-		morseMap.put('P', ".--.");
-		morseMap.put('Q', "--.-");
-		morseMap.put('R', ".-.");
-		morseMap.put('S', "...");
-		morseMap.put('T', "-");
-		morseMap.put('U', "..-");
-		morseMap.put('V', "...-");
-		morseMap.put('W', ".--");
-		morseMap.put('X', "-..-");
-		morseMap.put('Y', "-.--");
-		morseMap.put('Z', "--..");
-		morseMap.put('0', "-----");
-		morseMap.put('1', ".----");
-		morseMap.put('2', "..---");
-		morseMap.put('3', "...--");
-		morseMap.put('4', "....-");
-		morseMap.put('5', ".....");
-		morseMap.put('6', "-....");
-		morseMap.put('7', "--...");
-		morseMap.put('8', "---..");
-		morseMap.put('9', "----.");
+    private static Map<Character, String> getMorseMap() {
+        Map<Character, String> morseMap = new HashMap<Character, String>();
+        morseMap.put('A', ".-");
+        morseMap.put('B', "-...");
+        morseMap.put('C', "-.-.");
+        morseMap.put('D', "-..");
+        morseMap.put('E', ".");
+        morseMap.put('F', "..-.");
+        morseMap.put('G', "--.");
+        morseMap.put('H', "....");
+        morseMap.put('I', "..");
+        morseMap.put('J', ".---");
+        morseMap.put('K', "-.-");
+        morseMap.put('L', ".-..");
+        morseMap.put('M', "--");
+        morseMap.put('N', "-.");
+        morseMap.put('O', "---");
+        morseMap.put('P', ".--.");
+        morseMap.put('Q', "--.-");
+        morseMap.put('R', ".-.");
+        morseMap.put('S', "...");
+        morseMap.put('T', "-");
+        morseMap.put('U', "..-");
+        morseMap.put('V', "...-");
+        morseMap.put('W', ".--");
+        morseMap.put('X', "-..-");
+        morseMap.put('Y', "-.--");
+        morseMap.put('Z', "--..");
+        morseMap.put('0', "-----");
+        morseMap.put('1', ".----");
+        morseMap.put('2', "..---");
+        morseMap.put('3', "...--");
+        morseMap.put('4', "....-");
+        morseMap.put('5', ".....");
+        morseMap.put('6', "-....");
+        morseMap.put('7', "--...");
+        morseMap.put('8', "---..");
+        morseMap.put('9', "----.");
 
-		return morseMap;
-	}
+        return morseMap;
+    }
 
 }

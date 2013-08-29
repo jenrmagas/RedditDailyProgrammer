@@ -19,21 +19,21 @@ import java.util.Map;
  */
 public class Problem011UpsideUpNumbers {
 
-	private static Map<Integer, Integer> upsideUpMap = setupUpsideUpMap();
+    private static Map<Integer, Integer> upsideUpMap = setupUpsideUpMap();
 
-	public static void main(String[] args) {
-		// todo
-	}
+    public static void main(final String[] args) {
+        // todo
+    }
 
-	private static Map<Integer, Integer> setupUpsideUpMap() {
-		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-		map.put(0, 0);
-		map.put(2, 5);
-		map.put(5, 2);
-		map.put(6, 9);
-		map.put(8, 8);
-		map.put(9, 6);
-		return Collections.unmodifiableMap(map);
-	}
+    private static Map<Integer, Integer> setupUpsideUpMap() {
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        map.put(0, 0);
+        map.put(2, 5);
+        map.put(5, 2);
+        map.put(6, 9);
+        map.put(8, 8);
+        map.put(9, 6);
+        return Collections.unmodifiableMap(map);
+    }
 
 }
