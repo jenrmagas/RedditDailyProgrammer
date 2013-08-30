@@ -25,8 +25,8 @@ public class Problem011DayOfTheWeek {
         int day, mon, year;
         Calendar targetDate;
         try {
-            System.out
-                    .println("Based on the day, month, and year provided, you can find out what day of the week it is.\n");
+            System.out.println("Based on the day, month, and year provided, " +
+                    "you can find out what day of the week it is.\n");
 
             System.out.print("Enter the year (format of YYYY): ");
             year = Integer.valueOf(reader.readLine());
