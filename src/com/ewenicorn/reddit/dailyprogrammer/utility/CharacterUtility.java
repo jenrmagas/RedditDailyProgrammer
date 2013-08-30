@@ -15,7 +15,12 @@ public class CharacterUtility {
             for (int i = 0; i < actualShiftDistance; i++) {
                 shifted += singleMove;
                 if (!Character.isLetter(shifted)) {
-                    shifted = (char) (shifted + 26 * singleMove);
+                    if (shiftRight) {
+                        shifted = (char) (shifted - 26);
+                    } else {
+                        shifted = (char) (shifted + 26);
+                    }
+
                 }
             }
         }
