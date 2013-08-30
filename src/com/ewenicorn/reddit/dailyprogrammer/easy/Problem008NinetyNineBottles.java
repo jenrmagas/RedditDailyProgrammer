@@ -9,8 +9,8 @@ public class Problem008NinetyNineBottles {
     }
 
     private static String singVerse(final int numberOfBottles) {
-        String bottlesBefore = numberOfBottles + " bottle" + (numberOfBottles != 1 ? "s " : " ") + "of beer";
-        String bottlesAfter = numberOfBottles - 1 + " bottle" + (numberOfBottles - 1 != 1 ? "s " : " ") + "of beer";
+        String bottlesBefore = singBottlesOfBeer(numberOfBottles);
+        String bottlesAfter = singBottlesOfBeer(numberOfBottles - 1);
 
         StringBuilder verse = new StringBuilder();
         verse.append(bottlesBefore + " on the wall\n");
@@ -20,6 +20,17 @@ public class Problem008NinetyNineBottles {
         verse.append(bottlesAfter + " on the wall\n");
 
         return verse.toString();
+    }
+
+    private static String singBottlesOfBeer(final int numberOfBottles) {
+        String bottlesBefore = numberOfBottles + " bottle";
+
+        if (numberOfBottles != 1) {
+            bottlesBefore += "s";
+        }
+        bottlesBefore += " of beer";
+
+        return bottlesBefore;
     }
 
 }

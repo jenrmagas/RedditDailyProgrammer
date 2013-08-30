@@ -53,7 +53,13 @@ public class Problem014BlockSwapWithCollections {
             final int blockSize) {
         List<String> sortedEntries = new ArrayList<String>();
         for (int i = 0; i < entries.size(); i += blockSize) {
-            int end = i + blockSize > entries.size() ? entries.size() : i + blockSize;
+            int end;
+            if (i + blockSize > entries.size()) {
+                end = entries.size();
+            } else {
+                end = i + blockSize;
+            }
+
             List<String> sublist = entries.subList(i, end);
 
             Collections.reverseOrder();

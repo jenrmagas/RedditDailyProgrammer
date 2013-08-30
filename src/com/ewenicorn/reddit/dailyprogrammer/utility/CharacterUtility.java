@@ -5,13 +5,17 @@ public class CharacterUtility {
     public static Character shiftCharacter(final Character orig, final int shiftDistance, final boolean shiftRight) {
         int actualShiftDistance = shiftDistance % 26;
         char shifted = orig;
-        int singleMove = shiftRight ? 1 : -1;
+
+        int singleMove = 1;
+        if (!shiftRight) {
+            singleMove = -1;
+        }
 
         if (Character.isLetter(orig)) {
             for (int i = 0; i < actualShiftDistance; i++) {
                 shifted += singleMove;
                 if (!Character.isLetter(shifted)) {
-                    shifted = (char) (shiftRight ? shifted - 26 : shifted + 26);
+                    shifted = (char) (shifted + 26 * singleMove);
                 }
             }
         }

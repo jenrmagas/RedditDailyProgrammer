@@ -3,7 +3,13 @@ package com.ewenicorn.reddit.dailyprogrammer.utility;
 public class Bytelandian {
 
     public static int exchangeToZeroCoins(final int n) {
-        return n == 0 ? 1 : exchangeToZeroCoins(n / 2) + exchangeToZeroCoins(n / 3) + exchangeToZeroCoins(n / 4);
+        int result = 1;
+
+        if (n != 0) {
+            result = exchangeToZeroCoins(n / 2) + exchangeToZeroCoins(n / 3) + exchangeToZeroCoins(n / 4);
+        }
+
+        return result;
     }
 
     public static int exchangeToThrees(final int n) {
