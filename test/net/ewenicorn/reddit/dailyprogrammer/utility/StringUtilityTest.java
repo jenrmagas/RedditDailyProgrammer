@@ -1,4 +1,4 @@
-package com.ewenicorn.reddit.dailyprogrammer.utility;
+package net.ewenicorn.reddit.dailyprogrammer.utility;
 
 import static org.junit.Assert.assertEquals;
 

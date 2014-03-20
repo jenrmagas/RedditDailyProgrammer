@@ -1,4 +1,4 @@
-package com.ewenicorn.reddit.dailyprogrammer.easy;
+package net.ewenicorn.reddit.dailyprogrammer.easy;
 
 import java.io.BufferedReader;
 import java.io.IOException;

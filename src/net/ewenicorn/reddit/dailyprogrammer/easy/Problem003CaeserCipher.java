@@ -1,10 +1,10 @@
-package com.ewenicorn.reddit.dailyprogrammer.easy;
+package net.ewenicorn.reddit.dailyprogrammer.easy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.ewenicorn.reddit.dailyprogrammer.utility.StringUtility;
+import net.ewenicorn.reddit.dailyprogrammer.utility.StringUtility;
 
 /**
  * http://redd.it/pkw2m

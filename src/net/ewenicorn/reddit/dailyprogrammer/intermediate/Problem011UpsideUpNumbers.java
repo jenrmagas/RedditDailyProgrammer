@@ -1,4 +1,4 @@
-package com.ewenicorn.reddit.dailyprogrammer.intermediate;
+package net.ewenicorn.reddit.dailyprogrammer.intermediate;
 
 import java.util.Collections;
 import java.util.HashMap;

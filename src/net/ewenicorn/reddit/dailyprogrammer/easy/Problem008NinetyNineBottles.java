@@ -1,4 +1,4 @@
-package com.ewenicorn.reddit.dailyprogrammer.easy;
+package net.ewenicorn.reddit.dailyprogrammer.easy;
 
 public class Problem008NinetyNineBottles {
 

@@ -22,9 +22,9 @@
  * it's gotten a matching coin.
  * 
  */
-package com.ewenicorn.reddit.dailyprogrammer.easy;
+package net.ewenicorn.reddit.dailyprogrammer.easy;
 
-import static com.ewenicorn.reddit.dailyprogrammer.utility.Bytelandian.exchangeToZeroCoins;
+import static net.ewenicorn.reddit.dailyprogrammer.utility.Bytelandian.exchangeToZeroCoins;
 
 public class Problem121Bytelandian {
 
